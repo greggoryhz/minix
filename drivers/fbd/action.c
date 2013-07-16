@@ -195,7 +195,7 @@ static void action_pre_misdir(struct fbd_rule *rule, iovec_t *UNUSED(iov),
 		choice = 0;
 
 	*pos = rule->params.misdir.start +
-		(choice * rule->params.misdir.align);
+		(u64_t)(choice * rule->params.misdir.align);
 }
 
 /*===========================================================================*
