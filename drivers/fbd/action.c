@@ -46,9 +46,9 @@ static size_t get_range(struct fbd_rule *rule, u64_t pos, size_t *size,
 	size_t off;
 	int to_eof;
 
-	to_eof = cmp64(rule->start, rule->end) >= 0;
+	to_eof = rule->start >= rule->end;
 
-	if (cmp64(pos, rule->start) > 0) {
+	if (pos > rule->start) {
 		if (skip != NULL) *skip = pos - rule->start;
 
 		off = 0;
@@ -64,12 +64,12 @@ static size_t get_range(struct fbd_rule *rule, u64_t pos, size_t *size,
 	}
 
 	if (!to_eof) {
-		assert(cmp64(pos, rule->end) < 0);
+		assert(pos < rule->end);
 
 		delta = rule->end - pos;
 
-		if (cmp64u(delta, *size) < 0)
-			*size = ex64lo(delta);
+		if (delta < *size)
+			*size = ex64lo(delta;)t
 	}
 
 	assert(*size > off);
@@ -195,7 +195,7 @@ static void action_pre_misdir(struct fbd_rule *rule, iovec_t *UNUSED(iov),
 		choice = 0;
 
 	*pos = rule->params.misdir.start +
-		(u64_t)(choice * rule->params.misdir.align);
+		((u64_t)choice * (u64_t)rule->params.misdir.align);
 }
 
 /*===========================================================================*
