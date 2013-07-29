@@ -69,7 +69,7 @@ static size_t get_range(struct fbd_rule *rule, u64_t pos, size_t *size,
 		delta = rule->end - pos;
 
 		if (delta < *size)
-			*size = ex64lo(delta;)t
+			*size = ex64lo(delta);
 	}
 
 	assert(*size > off);
@@ -195,7 +195,7 @@ static void action_pre_misdir(struct fbd_rule *rule, iovec_t *UNUSED(iov),
 		choice = 0;
 
 	*pos = rule->params.misdir.start +
-		((u64_t)choice * (u64_t)rule->params.misdir.align);
+		((u64_t)choice * rule->params.misdir.align);
 }
 
 /*===========================================================================*
